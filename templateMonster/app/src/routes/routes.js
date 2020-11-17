@@ -14,7 +14,7 @@ export default [
         component: ListPage
     },
     {
-        path: '/list/:id',
+        path: '/item/:id',
         exact: false,
         component: ItemPage
     }

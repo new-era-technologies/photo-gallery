@@ -16,7 +16,7 @@ class Item extends Component {
         } = this;
         return (
             <div className='Item'>
-                <Link to={`/list/${id}`} key={id} className='Item__link'>
+                <Link to={`/item/${id}`} key={id} className='Item__link'>
                     <figure className='Item__fig'>
                         <img src={download_url} alt={`img_${id}`} className='Item__fig__img' />
                         <figcaption className='Item__fig__cap'>

@@ -1,0 +1,14 @@
+.MainItem {
+    &__container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        &__img {
+            width: 60%;
+        }
+        &__data {
+            width: 30%;
+        }
+    }
+}
