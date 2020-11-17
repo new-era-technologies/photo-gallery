@@ -16,5 +16,6 @@ ReactDOM.render(
           <Route key={i} path={path} exact={exact} component={component} />
       )}
     </Switch>
-  </Router>
-  , document.getElementById('root'));
+  </Router>,
+  document.getElementById('root')
+);
