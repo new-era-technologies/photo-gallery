@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Item from '../../components/Item';
-import axios from 'axios';
+import fetchApi from '../../utils/api/api';
 import './MainList.scss';
 import '../../index.css';
 
@@ -8,11 +8,13 @@ import '../../index.css';
 class MainList extends Component {
 
     state = {
-        list: []
+        list: [],
+        currentPage: 1,
+        dataPerPage: 30
     };
 
     componentDidMount() {
-        axios.get('https://picsum.photos/v2/list')
+        fetchApi(this.state.currentPage, this.state.dataPerPage)
             .then(
                 res => {
                     this.setState({
@@ -23,7 +25,38 @@ class MainList extends Component {
     }
 
     getPics = (num) => {
-        axios.get('https://picsum.photos/v2/list?limit=' + num)
+        fetchApi(this.state.currentPage, num)
+            .then(
+                res => {
+                    this.setState({
+                        list: res.data,
+                        dataPerPage: num
+                    })
+                }
+            )
+    }
+
+    decremPage = () => {
+        if (this.state.currentPage > 1) {
+            this.setState({
+                currentPage: this.state.currentPage - 1
+            })
+            fetchApi(this.state.currentPage, this.state.dataPerPage)
+            .then(
+                res => {
+                    this.setState({
+                        list: res.data
+                    })
+                }
+            )
+        }
+    }
+
+    encremPage = () => {
+        this.setState({
+            currentPage: this.state.currentPage + 1
+        })
+        fetchApi(this.state.currentPage, this.state.dataPerPage)
             .then(
                 res => {
                     this.setState({
@@ -41,18 +74,30 @@ class MainList extends Component {
                     <div className='container'>
                         <h2 className='MainList__title'>list of images</h2>
                         <div className='Limit__container'>
+                            per page
                             <button
-                                className='Limit__container__pag Limit__container__pag--30'
+                                className='Limit__container__but'
                                 onClick={() => this.getPics(30)}
                             >30</button>
                             <button
-                                className='Limit__container__pag Limit__container__pag--50'
+                                className='Limit__container__but'
                                 onClick={() => this.getPics(50)}
                             >50</button>
                             <button
-                                className='Limit__container__pag Limit__container__pag--100'
+                                className='Limit__container__but'
                                 onClick={() => this.getPics(100)}
                             >100</button>
+                        </div>
+                        <div className='Pag__container'>
+                            go to page
+                            <button
+                                className='Pag__container__but'
+                                onClick={this.decremPage}
+                            >prev</button>
+                            <button
+                                className='Pag__container__but'
+                                onClick={this.encremPage}
+                            >next</button>
                         </div>
                         <div className='MainList__container'>
                             {list.map(
