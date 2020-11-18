@@ -22,6 +22,17 @@ class MainList extends Component {
             )
     }
 
+    getPics = (num) => {
+        axios.get('https://picsum.photos/v2/list?limit=' + num)
+            .then(
+                res => {
+                    this.setState({
+                        list: res.data
+                    })
+                }
+            )
+    }
+
     render() {
         const { state: { list } } = this;
         if (list.length) {
@@ -29,6 +40,20 @@ class MainList extends Component {
                 <div className='MainList'>
                     <div className='container'>
                         <h2 className='MainList__title'>list of images</h2>
+                        <div className='Limit__container'>
+                            <button
+                                className='Limit__container__pag Limit__container__pag--30'
+                                onClick={() => this.getPics(30)}
+                            >30</button>
+                            <button
+                                className='Limit__container__pag Limit__container__pag--50'
+                                onClick={() => this.getPics(50)}
+                            >50</button>
+                            <button
+                                className='Limit__container__pag Limit__container__pag--100'
+                                onClick={() => this.getPics(100)}
+                            >100</button>
+                        </div>
                         <div className='MainList__container'>
                             {list.map(
                                 (item, i) =>
