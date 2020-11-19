@@ -27,6 +27,15 @@ class Menu extends Component {
                             gallery list
                         </NavLink>
                     </li>
+                    <li className='Menu__list__item'>
+                        <NavLink
+                            to={'/favorite'}
+                            className='Menu__list__item__link'
+                            activeClassName='active'
+                        >
+                            favorite list
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         )
