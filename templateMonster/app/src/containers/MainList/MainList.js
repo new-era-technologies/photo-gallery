@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Item from '../../components/Item';
 import fetchApi from '../../utils/api/api';
-import './MainList.scss';
 import '../../index.css';
+import './MainList.scss';
 
 
 class MainList extends Component {
@@ -42,13 +42,13 @@ class MainList extends Component {
                 currentPage: this.state.currentPage - 1
             })
             fetchApi(this.state.currentPage, this.state.dataPerPage)
-            .then(
-                res => {
-                    this.setState({
-                        list: res.data
-                    })
-                }
-            )
+                .then(
+                    res => {
+                        this.setState({
+                            list: res.data
+                        })
+                    }
+                )
         }
     }
 

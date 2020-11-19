@@ -5,7 +5,7 @@ import './Item.scss';
 
 class Item extends Component {
     render() {
-        const  {
+        const {
             props: {
                 item: {
                     id,

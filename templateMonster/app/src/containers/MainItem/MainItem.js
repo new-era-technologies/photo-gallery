@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MainFavorite from '../MainFavorite/MainFavorite';
 import axios from 'axios';
-import './MainItem.scss';
+import MainFavorite from '../MainFavorite/MainFavorite';
 import '../../index.css';
+import './MainItem.scss';
 
 
 class MainItem extends Component {
@@ -33,9 +33,9 @@ class MainItem extends Component {
                                 <p className='MainItem__container__data__author'><b>author: </b>{listItem.author}</p>
                                 <p className='MainItem__container__data__size'><i>{listItem.width} x {listItem.height}</i></p>
                                 <p className='MainItem__container__data__link'><b>link: </b>
-                                <a href={listItem.url} className="MainItem__container__data__link__item" target='_blank' rel="noopener noreferrer">
-                                    {listItem.url}
-                                </a>
+                                    <a href={listItem.url} className="MainItem__container__data__link__item" target='_blank' rel="noopener noreferrer">
+                                        {listItem.url}
+                                    </a>
                                 </p>
                                 <MainFavorite item={listItem} />
                             </div>

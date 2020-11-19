@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import store from 'store';
 import Header from '../../containers/Header/Header';
 import Favorite from '../../components/Favorite';
-import store from 'store';
 
 
 class FavoritePage extends Component {
@@ -12,7 +12,6 @@ class FavoritePage extends Component {
     componentDidMount() {
         const self = this;
         store.each(function (value, key) {
-            console.log(key, '==', value);
             self.setState(prevState => ({
                 listPics: [...prevState.listPics, value]
             }))
@@ -29,7 +28,7 @@ class FavoritePage extends Component {
                     <div className='FavoritePage__container'>
                         {listPics.map(
                             (item, i) =>
-                                <Favorite item={item} />
+                                <Favorite item={item} key={i} />
                         )}
                     </div>
                 </div>
